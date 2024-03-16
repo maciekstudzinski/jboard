@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ad;
 use Illuminate\Http\Request;
 
-class JobController extends Controller
+class AdController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view('ad.index', ['ads' => Ad::all()]);
     }
 
     /**
