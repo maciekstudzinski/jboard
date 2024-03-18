@@ -12,7 +12,19 @@ class AdController extends Controller
      */
     public function index()
     {
-        return view('ad.index', ['ads' => Ad::all()]);
+        $ads = Ad::query();
+
+        $ads->when(request('search'), function($query) {
+            $query->where(function ($query) {
+                $query->where('title', 'like', '%' . request('search') . '%')->orWhere('description', 'like', '%' . request('search') . '%');
+            });
+        })->when(request('min_salary'), function($query) {
+            $query->where('salary', '>=', request('min_salary'));
+        })->when(request('max_salary'), function($query) {
+            $query->where('salary', '<=', request('max_salary'));
+        });
+
+        return view('ad.index', ['ads' => $ads->get()]);
     }
 
     /**
@@ -34,9 +46,9 @@ class AdController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Ad $ad)
     {
-        //
+        return view('ad.show', compact('ad'));
     }
 
     /**
