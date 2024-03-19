@@ -1,5 +1,5 @@
 <div>
-    <div class="mb-1 font-semibold">Experience</div>
+
     <label for="{{ $name }}" class="mb-1 flex items-center">
         <input type="radio" name="{{ $name }}" value="" 
         @checked($name) />

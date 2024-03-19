@@ -22,7 +22,8 @@
             <div class="mb-1 font-semibold">Experience</div>
             <x-radio-group name="experience" :options="\App\Models\Ad::$experience"/>
           </div>
-          <div>4</div>
+          <div><div class="mb-1 font-semibold">Category</div>
+          <x-radio-group name="category" :options="\App\Models\Ad::$category"/></div>
         </div>
         <button class="w-full">Filter</button>
       </form>
