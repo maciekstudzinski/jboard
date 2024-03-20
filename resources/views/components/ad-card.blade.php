@@ -11,8 +11,8 @@
             <div> {{ $ad->location }}</div>
         </div>
         <div class="flex space-x-1 text-xs">
-            <x-tag>{{ Str::ucfirst($ad->experience )}}</x-tag>
-            <x-tag>{{ $ad->category }}</x-tag>
+            <x-tag><a href="{{ route('ads.index', ['experience' => $ad->experience]) }}">{{ Str::ucfirst($ad->experience )}}</a></x-tag>
+            <x-tag><a href="{{ route('ads.index', ['category' => $ad->category]) }}">{{ $ad->category }}</a></x-tag>
         </div>
     </div>
     {{ $slot }}
