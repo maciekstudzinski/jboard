@@ -2,22 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Ad;
 use Illuminate\Http\Request;
 
-class AdController extends Controller
+class AuthController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $filters = request()->only('search', 'min_salary', 'max_salary', 'experience', 'category');
-        $ads = Ad::with('employer')->filter($filters);
-
-     
-
-        return view('ad.index', ['ads' => $ads->get()]);
+        //
     }
 
     /**
@@ -25,7 +19,7 @@ class AdController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.create');
     }
 
     /**
@@ -39,9 +33,9 @@ class AdController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Ad $ad)
+    public function show(string $id)
     {
-        return view('ad.show', ['ad' => $ad->load('employer.ads')]);
+        //
     }
 
     /**
