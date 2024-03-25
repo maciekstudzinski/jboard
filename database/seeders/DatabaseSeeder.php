@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Ad;
+use App\Models\AdApplication;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -31,12 +33,23 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        foreach($users as $user) {
+            $ads = Ad::inRandomOrder()->take(rand(0, 4))->get();
+
+            foreach($ads as $ad) {
+                AdApplication::factory()->create([
+                    'ad_id' => $ad->id,
+                    'user_id' => $user->id
+                ]);
+            }
+        }
+
         
         // User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Maciej Studzinski',
+            'email' => 'jozifster@gmail.com',
         ]);
     }
 }
