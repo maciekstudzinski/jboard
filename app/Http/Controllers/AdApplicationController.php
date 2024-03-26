@@ -3,16 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ad;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
+
 
 class AdApplicationController extends Controller
 {
 
+    use AuthorizesRequests;
     /**
      * Show the form for creating a new resource.
      */
     public function create(Ad $ad)
     {
+        $this->authorize('apply', $ad);
         return view('ad_application.create', ['ad' => $ad]);
     }
 
@@ -21,6 +25,7 @@ class AdApplicationController extends Controller
      */
     public function store(Ad $ad, Request $request)
     {
+        $this->authorize('apply', $ad);
         $ad->adApplications()->create([
             'user_id' => $request->user()->id,
             ...$request->validate([
